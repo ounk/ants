@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('I:\\Steffen\\keystore.jks')
+            storePassword 'LntCAwt2000tb!'
+            keyAlias 'key1'
+            keyPassword 'LntCAwt2000tb!'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "cool.ants.com"
+        minSdkVersion 26
+        targetSdkVersion 33
+        versionCode 4
+        versionName "1.2"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    namespace 'cool.ants.com'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    testImplementation 'junit:junit:4.13.2'
+    implementation "androidx.core:core-ktx:1.10.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'org.videolan.android:libvlc-all:3.1.12'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+}
+repositories {
+    mavenCentral()
+}
